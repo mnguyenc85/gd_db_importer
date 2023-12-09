@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6pb4qt3g12ca"]
+
+[ext_resource type="Script" path="res://addons/a2d_db_importer/views/dbi_info.gd" id="1_sk33g"]
+
+[node name="DBIInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sk33g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="lbl1" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Property"
+vertical_alignment = 1
+
+[node name="lbl2" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Value"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="hsep1" type="HSeparator" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="hsep2" type="HSeparator" parent="MarginContainer/GridContainer"]
+layout_mode = 2

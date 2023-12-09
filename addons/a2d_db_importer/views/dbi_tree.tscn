@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr68ej8ewcifw"]
+
+[ext_resource type="Script" path="res://addons/a2d_db_importer/views/dbi_tree.gd" id="1_biawo"]
+
+[node name="ContentTree" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_biawo")
+
+[node name="Tree" type="Tree" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+hide_root = true
+
+[connection signal="item_selected" from="Tree" to="." method="_on_tree_item_selected"]

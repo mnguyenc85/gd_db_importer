@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1w6alw6ceo77"]
+
+[ext_resource type="Script" path="res://addons/a2d_db_importer/views/dbi_file_selector.gd" id="1_eoc8h"]
+[ext_resource type="Texture2D" uid="uid://bobmwnnj4h0lx" path="res://addons/a2d_db_importer/images/icons.png" id="2_6p5ac"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w137s"]
+atlas = ExtResource("2_6p5ac")
+region = Rect2(0, 0, 16, 16)
+
+[node name="FileSelector" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+script = ExtResource("1_eoc8h")
+
+[node name="lblTitle" type="Label" parent="."]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+vertical_alignment = 1
+
+[node name="btLoad" type="Button" parent="."]
+visible = false
+layout_mode = 2
+text = " Load "
+
+[node name="txtFilePath" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="btBrowse" type="Button" parent="."]
+layout_mode = 2
+text = " ... "
+
+[node name="btClear" type="Button" parent="."]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+icon = SubResource("AtlasTexture_w137s")
+icon_alignment = 1
+
+[connection signal="pressed" from="btLoad" to="." method="_on_btLoad_pressed"]
+[connection signal="pressed" from="btBrowse" to="." method="_on_btBrowse_pressed"]
+[connection signal="pressed" from="btClear" to="." method="_on_btClear_pressed"]

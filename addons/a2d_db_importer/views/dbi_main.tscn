@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=3 uid="uid://cw2qch31cl5o0"]
+
+[ext_resource type="Script" path="res://addons/a2d_db_importer/views/dbi_main.gd" id="1_ils2s"]
+[ext_resource type="PackedScene" uid="uid://d1w6alw6ceo77" path="res://addons/a2d_db_importer/views/dbi_file_selector.tscn" id="1_mawwp"]
+[ext_resource type="PackedScene" uid="uid://dr68ej8ewcifw" path="res://addons/a2d_db_importer/views/dbi_tree.tscn" id="3_36pg4"]
+[ext_resource type="PackedScene" uid="uid://b6pb4qt3g12ca" path="res://addons/a2d_db_importer/views/dbi_info.tscn" id="4_c1i1x"]
+[ext_resource type="Script" path="res://addons/a2d_db_importer/views/dbi_img_atlas.gd" id="5_u28r6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06tbt"]
+bg_color = Color(0.141176, 0.0745098, 0.215686, 1)
+
+[node name="Control" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_ils2s")
+
+[node name="Margin1" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 3
+
+[node name="Vbox1" type="VBoxContainer" parent="Margin1"]
+layout_mode = 2
+
+[node name="fsAtlas" parent="Margin1/Vbox1" instance=ExtResource("1_mawwp")]
+layout_mode = 2
+title = "Atlas"
+ShowButton = true
+
+[node name="fsSkel" parent="Margin1/Vbox1" instance=ExtResource("1_mawwp")]
+layout_mode = 2
+title = "Skel"
+ShowButton = true
+
+[node name="HSeparator" type="HSeparator" parent="Margin1/Vbox1"]
+layout_mode = 2
+
+[node name="Hbox1" type="HBoxContainer" parent="Margin1/Vbox1"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ContentTree" parent="Margin1/Vbox1/Hbox1" instance=ExtResource("3_36pg4")]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+
+[node name="DBIInfo" parent="Margin1/Vbox1/Hbox1" instance=ExtResource("4_c1i1x")]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Margin1/Vbox1/Hbox1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="imgAtlas" type="TextureRect" parent="Margin1/Vbox1/Hbox1/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("5_u28r6")
+
+[node name="HSeparator2" type="HSeparator" parent="Margin1/Vbox1"]
+layout_mode = 2
+
+[node name="Hbox2" type="HBoxContainer" parent="Margin1/Vbox1"]
+layout_mode = 2
+
+[node name="btImport" type="Button" parent="Margin1/Vbox1/Hbox2"]
+layout_mode = 2
+text = "Import"
+
+[node name="btDebug" type="Button" parent="Margin1/Vbox1/Hbox2"]
+layout_mode = 2
+text = "Debug"
+
+[node name="fsTexture" parent="Margin1/Vbox1" instance=ExtResource("1_mawwp")]
+layout_mode = 2
+title = "Texture folder:"
+filepath = "res://textures"
+
+[node name="PnlStatus" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_06tbt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PnlStatus"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 26.0
+
+[node name="Label" type="Label" parent="PnlStatus/HBoxContainer"]
+self_modulate = Color(0.815686, 0.815686, 0.815686, 1)
+layout_mode = 2
+text = " Mode:"
+vertical_alignment = 1
+
+[node name="lblMode" type="Label" parent="PnlStatus/HBoxContainer"]
+layout_mode = 2
+text = "Game"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="PnlStatus/HBoxContainer"]
+layout_mode = 2
+
+[node name="lblRootNode" type="Label" parent="PnlStatus/HBoxContainer"]
+layout_mode = 2
+vertical_alignment = 1
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 1
+size = Vector2i(640, 480)
+content_scale_mode = 1
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[connection signal="pressed" from="Margin1/Vbox1/Hbox2/btImport" to="." method="_on_btImport_pressed"]
+[connection signal="pressed" from="Margin1/Vbox1/Hbox2/btDebug" to="." method="_on_btDebug_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_fdlg_file_selected"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_fdlg_file_selected"]
